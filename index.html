@@ -1,1 +1,158 @@
-$(cat /home/user/Doubao/chats/38441644338765826/ap-slides/index.html)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geographic Dimensions of PV Energy Management in Smart Cities</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='7' fill='%23E8A33D'/%3E%3Cg stroke='%23E8A33D' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M16 2v4M16 26v4M2 16h4M26 16h4M6 6l3 3M23 23l3 3M26 6l-3 3M9 23l-3 3'/%3E%3C/g%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#0E2A38;
+    --bg2:#0A2029;
+    --amber:#E8A33D;
+    --paper:#F2EDE3;
+    --muted:#9FB3BF;
+    --line:rgba(232,163,61,.35);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%;background:var(--bg);color:var(--paper);
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    overflow:hidden}
+  .slide{
+    position:absolute;inset:0;display:none;
+    padding:7vh 9vw;flex-direction:column;justify-content:center;
+    animation:fade .5s ease}
+  .slide.active{display:flex}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .kicker{font-size:15px;letter-spacing:.25em;text-transform:uppercase;
+    color:var(--amber);margin-bottom:2.2vh;font-weight:600}
+  h1{font-family:Georgia,"Times New Roman",serif;font-weight:600;
+    font-size:clamp(30px,4.6vw,64px);line-height:1.15;max-width:18ch}
+  h2{font-family:Georgia,"Times New Roman",serif;font-weight:600;
+    font-size:clamp(26px,3.4vw,46px);line-height:1.2;margin-bottom:3.5vh}
+  .rule{width:64px;height:2px;background:var(--amber);margin:3vh 0}
+  ul{list-style:none}
+  li{font-size:clamp(18px,1.7vw,28px);line-height:1.5;margin:1.4vh 0;
+    padding-left:1.4em;position:relative;max-width:44ch}
+  li::before{content:"";position:absolute;left:0;top:.62em;width:8px;height:8px;
+    background:var(--amber)}
+  li small{display:block;color:var(--muted);font-size:.7em;margin-top:.3vh}
+  .byline{margin-top:4vh;color:var(--muted);font-size:18px;line-height:1.7}
+  .byline b{color:var(--paper);font-weight:600}
+  .foot{position:absolute;left:9vw;right:9vw;bottom:3.5vh;
+    display:flex;justify-content:space-between;align-items:center;
+    font-size:14px;color:var(--muted);letter-spacing:.05em}
+  .foot .src{color:var(--amber)}
+  .q{font-family:Georgia,serif;font-size:clamp(19px,1.9vw,30px);line-height:1.5;
+    padding:2.4vh 0;border-left:2px solid var(--line);padding-left:2vw;max-width:46ch}
+  .q + .q{margin-top:2.5vh}
+  .q b{color:var(--amber)}
+  .notes{position:absolute;left:0;right:0;bottom:0;
+    background:rgba(10,32,41,.96);border-top:1px solid var(--line);
+    padding:2.2vh 9vw;font-size:15px;line-height:1.55;color:var(--paper);
+    display:none;max-height:32vh;overflow:auto}
+  body.notes-on .notes{display:block}
+  .progress{position:fixed;top:0;left:0;height:3px;background:var(--amber);
+    width:0;transition:width .4s ease;z-index:10}
+  @media (max-width:760px){
+    .slide{padding:6vh 7vw}
+    li{max-width:none}
+  }
+</style>
+</head>
+<body>
+<div class="progress" id="prog"></div>
+
+<section class="slide" data-notes="Start warmly: smart cities are popular; every sensor consumes energy. Solar is green and sustainable, but unstable: latitude, cloud cover, weather, climate all change how much power a city gets. So understanding your own geography is the starting point. Then pause, state the title, say your name.">
+  <div class="kicker">UE2 Academic Presentation · Group 2 · Smart Cities</div>
+  <h1>Geographic Dimensions of Photovoltaic Energy Management in Smart Cities</h1>
+  <div class="rule"></div>
+  <ul>
+    <li>Smart cities need energy — sensors, devices, the whole city grid</li>
+    <li>Solar is green and sustainable — but <b>not stable</b></li>
+    <li>Latitude, cloud cover, weather, climate decide how much power a city gets</li>
+  </ul>
+  <div class="byline"><b>WANG Siyuan</b> · 25281755 · BSSC-GEOG<br>Hong Kong Baptist University · UCLC1009</div>
+  <div class="foot"><span class="src">Context &amp; rationale</span><span>1 / 6</span></div>
+</section>
+
+<section class="slide" data-notes="Say the gap in one breath: studies look at assessment, forecasting, management separately. Few put geography at the centre. Then read both RQs slowly — RQ1 broad, RQ2 narrow. This is the spine of the whole talk.">
+  <div class="kicker">02 · Research questions</div>
+  <h2>Three parts, three separate literatures — geography missing from the centre</h2>
+  <div class="q"><b>RQ1.</b> How do geographic factors — solar radiation, cloud cover and climate — shape solar resource assessment and the energy management of photovoltaic systems in smart cities?</div>
+  <div class="q"><b>RQ2.</b> How can satellite-based radiation data and short-term photovoltaic forecasting, informed by local geographic conditions, improve urban energy management and grid stability?</div>
+  <div class="foot"><span class="src">Six articles · three themes</span><span>2 / 6</span></div>
+</section>
+
+<section class="slide" data-notes="Theme A: assessment. Zhang used satellite cloud data (GLHCC, 1 km resolution) across China — high resolution beats old products where clouds change fast. Doljak took a different route: GIS + AHP multi-criteria site selection in Serbia. Punchline: Zhang measures how much energy is there; Doljak decides where to build. Both turn geography into spatial decisions.">
+  <div class="kicker">03 · Theme A</div>
+  <h2>Geographic assessment — how much energy, and where to build</h2>
+  <ul>
+    <li><b>Zhang et al. (2022)</b> — satellite cloud climatology (GLHCC, 1 km) estimates PV energy across China<small>high resolution beats old products where clouds change fast</small></li>
+    <li><b>Doljak &amp; Stanojević (2017)</b> — GIS + multi-criteria (AHP) site selection, Serbia<small>north / Banat region holds the largest solar potential</small></li>
+    <li>One measures <i>"how much"</i> — the other decides <i>"where"</i></li>
+  </ul>
+  <div class="foot"><span class="src">Theme A · spatial decisions from geography</span><span>3 / 6</span></div>
+</section>
+
+<section class="slide" data-notes="Theme B: forecasting. Sanjari & Gooi classified operating conditions by local temperature and irradiance, then a higher-order Markov chain forecasts the next 15 minutes — key finding: local-climate models beat global models. Singla's review maps the whole field (physical, statistical, ML); neural networks usually win. Punchline: one proves local matters; the other shows how it is done.">
+  <div class="kicker">04 · Theme B</div>
+  <h2>Short-term forecasting — local climate beats a global model</h2>
+  <ul>
+    <li><b>Sanjari &amp; Gooi (2017)</b> — local temperature × irradiance define operating points<small>higher-order Markov chain → 15-min probabilistic forecast</small></li>
+    <li><b>Singla et al. (2022)</b> — review of forecasting methods: physical / statistical / machine learning<small>ANN models usually perform best</small></li>
+    <li>One proves <i>"local matters"</i> — the other maps <i>"how it is done"</i></li>
+  </ul>
+  <div class="foot"><span class="src">Theme B · prediction chain</span><span>4 / 6</span></div>
+</section>
+
+<section class="slide" data-notes="Theme C: management platform. Rao et al. (2025) review shows IoT + cloud computing connecting solar generation to smart energy management. Syed et al. (2021) surveys big-data technologies behind the smart grid. Critique: both stay general — neither is specific to PV, neither brings geography in. The management layer exists but is not connected to assessment and forecasting above.">
+  <div class="kicker">05 · Theme C</div>
+  <h2>Management platform — the vision, and the missing link</h2>
+  <ul>
+    <li><b>Rao et al. (2025)</b> — review: IoT + cloud computing for smart PV energy management</li>
+    <li><b>Syed et al. (2021)</b> — review: big-data technologies behind the smart grid</li>
+    <li>Critique: both stay general — <b>not PV-specific, no geography</b></li>
+  </ul>
+  <div class="foot"><span class="src">Theme C · the gap the RQ2 closes</span><span>5 / 6</span></div>
+</section>
+
+<section class="slide" data-notes="Pick Zhang's satellite method for deep evaluation: it directly answers RQ1 — geography shapes assessment. It reveals 1 km cloud data captures real unevenness. But it stops at assessment; it never feeds forecasting or management. That gap is exactly RQ2. Then implications: practice (city planners), theory (geography at centre of smart-city energy research), future (one linked framework). Close with the geography-student line: GIS and remote sensing as the bridge. Thank you, take questions.">
+  <div class="kicker">06 · Evaluation &amp; implications</div>
+  <h2>One method, deepened — and what it still misses</h2>
+  <ul>
+    <li><b>Deep dive:</b> Zhang's satellite cloud method reveals real urban unevenness of solar resources</li>
+    <li><b>But:</b> it stops at assessment — never feeds forecasting or management</li>
+    <li><b>Implications:</b> planners choose sites by data · geography belongs at the centre · one linked framework is the next step</li>
+  </ul>
+  <div class="byline">For a geography student: GIS &amp; remote sensing are the bridge between environmental data and urban energy planning.</div>
+  <div class="foot"><span class="src">Thank you — questions welcome</span><span>6 / 6</span></div>
+</section>
+
+<div class="notes" id="notes"></div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  let i=0;
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    document.getElementById('notes').textContent=slides[i].dataset.notes||'';
+    document.getElementById('prog').style.width=((i+1)/slides.length*100)+'%';
+    history.replaceState(null,'','#'+(i+1));
+  }
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(i+1);}
+    else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(i-1);}
+    else if(e.key==='Home'){show(0);}
+    else if(e.key==='End'){show(slides.length-1);}
+    else if(e.key.toLowerCase()==='n'){document.body.classList.toggle('notes-on');}
+  });
+  window.addEventListener('click',e=>{
+    if(e.target.closest('.notes'))return;
+    show(i+1);
+  });
+  show(parseInt((location.hash||'#1').slice(1))-1||0);
+</script>
+</body>
+</html>
