@@ -56,9 +56,9 @@
   .fig img{width:100%;height:100%;object-fit:cover;display:block}
   .fig .veil{position:absolute;inset:0;
     background:linear-gradient(to right,rgba(14,42,56,.6),rgba(14,42,56,0) 45%)}
-  .fig .cap{position:absolute;left:0;right:0;bottom:0;padding:1.1vh 1.2vw;
-    background:linear-gradient(to top,rgba(10,32,41,.94),rgba(10,32,41,0));
-    font-size:12.5px;line-height:1.4;color:var(--muted)}
+  .fig .cap{position:absolute;left:0;right:0;bottom:0;padding:1.15vh 1.15vw;
+    background:rgba(8,24,31,.90);border-top:1px solid rgba(232,163,61,.28);
+    font-size:12.8px;line-height:1.42;color:#D6E1E8}
   .fig .cap b{color:var(--amber);font-weight:600}
   .fig.tall{aspect-ratio:16/11}
   .fig.wide{aspect-ratio:16/9}
@@ -76,7 +76,7 @@
     width:0;transition:width .4s ease;z-index:30}
 
   .chart{width:100%;height:auto;display:block}
-  .chart text{font-family:system-ui,sans-serif;fill:var(--muted)}
+  .chart text{font-family:system-ui,sans-serif;fill:#D9E4EB}
   .chart .axis{stroke:rgba(159,179,191,.4);stroke-width:1}
   .chart .grid{stroke:rgba(159,179,191,.16);stroke-width:1}
   .chart .lbl{font-size:11px}
@@ -90,11 +90,36 @@
     li,.q{max-width:none}
     .foot{bottom:1.5vh}
   }
+
+  /* ===== References overlay (outside the six-slide deck) ===== */
+  .refs{position:fixed;inset:0;z-index:60;display:none;overflow:auto;
+    background:#0A2029;padding:5.5vh 7vw 7vh}
+  body.refs-on .refs{display:block}
+  .refs .rh{display:flex;justify-content:space-between;align-items:baseline;
+    border-bottom:1px solid var(--line);padding-bottom:1.6vh;margin-bottom:2.6vh}
+  .refs .rh h3{font-family:Georgia,serif;font-size:clamp(19px,1.9vw,26px);font-weight:600;color:var(--paper)}
+  .refs .rh span{font-size:12.5px;color:var(--muted);letter-spacing:.06em}
+  .refs .cols{display:grid;grid-template-columns:1.35fr 1fr;gap:0 4vw}
+  .refs h4{font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--amber);margin:0 0 1.6vh;font-weight:600}
+  .refs ol{list-style:none;counter-reset:r}
+  .refs li{counter-increment:r;position:relative;
+    font-size:15px;line-height:1.5;color:var(--paper);
+    margin:0 0 1.45vh;max-width:none;padding:0 0 0 2.7em;text-indent:0}
+  .refs li::before{content:counter(r) ".";position:absolute;left:0;top:0;
+    color:var(--amber);font-weight:600}
+  .refs .cred{font-size:14.5px;line-height:1.55;color:var(--muted);
+    padding-left:1.1em;text-indent:-1.1em;margin-bottom:1.5vh}
+  .refs .cred b{color:var(--paper);font-weight:600}
+  .refs .note{font-size:13.5px;color:var(--muted);line-height:1.5;margin-top:2.2vh;
+    border-top:1px solid rgba(232,163,61,.2);padding-top:1.6vh}
+  @media (max-width:900px){.refs .cols{grid-template-columns:1fr;gap:3vh 0}}
 </style>
 </head>
 <body>
 <div class="progress" id="prog"></div>
 
+<!-- ===== 1 · Title ===== -->
 <section class="slide split" data-notes="Open warm but confident. Smart cities are everywhere now, and every sensor, every device, every server eats electricity. Solar is the obvious green answer, but it is unstable: latitude, cloud, weather and climate all decide how much power a city actually gets. So if a city wants to manage solar well, it must first understand its own geography. That is my starting point. Then say the title and your name.">
   <div>
     <div class="kicker">UE2 Academic Presentation · Group 2 · Smart Cities</div>
@@ -108,13 +133,14 @@
     <div class="byline"><b>WANG Siyuan</b> · 25281755 · BSSC-GEOG<br>Hong Kong Baptist University · UCLC1009</div>
   </div>
   <div class="fig tall">
-    <img src="https://aka.doubaocdn.com/s/ZlKUZ0OiZ8" alt="Rooftop photovoltaic arrays across a dense city skyline at dusk">
+    <img src="https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&amp;REQUEST=GetMap&amp;VERSION=1.1.1&amp;LAYERS=VIIRS_CityLights_2012&amp;FORMAT=image/jpeg&amp;TRANSPARENT=FALSE&amp;WIDTH=1200&amp;HEIGHT=675&amp;SRS=EPSG:4326&amp;BBOX=103,18,127,42" alt="Night-time lights over eastern China showing uneven urban energy demand">
     <div class="veil"></div>
-    <div class="cap"><b>Rooftop PV in a dense city</b> — the energy source smart cities now count on</div>
+    <div class="cap"><b>Where the demand sits.</b> Night-time lights over eastern China: urban energy demand is concentrated, and unevenly so. <span style="color:#E8A33D">NASA/NOAA VIIRS</span></div>
   </div>
   <div class="foot"><span class="src">Context &amp; rationale</span><span>1 / 6</span></div>
 </section>
 
+<!-- ===== 2 · RQ + gap ===== -->
 <section class="slide single" data-notes="State the gap in one breath: the literature treats assessment, forecasting and management as three separate conversations, and almost nobody puts geography in the middle. Then read both RQs slowly. RQ1 is broad and diagnostic; RQ2 is narrow and applied. Everything that follows hangs on these two sentences.">
   <div class="kicker">02 · Research questions</div>
   <h2>Three parts, three separate literatures — geography missing from the centre</h2>
@@ -124,20 +150,20 @@
   <svg class="chart" viewBox="0 0 760 118" style="margin-top:3.4vh" role="img" aria-label="Assessment, forecasting and management sit apart, with geography unlinked">
     <rect x="0" y="34" width="196" height="50" fill="rgba(232,163,61,.10)" stroke="rgba(232,163,61,.55)" stroke-width="1"/>
     <text x="98" y="56" text-anchor="middle" font-size="12" fill="#F2EDE3">Assessment</text>
-    <text x="98" y="72" text-anchor="middle" font-size="10.5">how much, and where</text>
+    <text x="98" y="72" text-anchor="middle" font-size="11">how much, and where</text>
 
     <rect x="282" y="34" width="196" height="50" fill="rgba(232,163,61,.10)" stroke="rgba(232,163,61,.55)" stroke-width="1"/>
     <text x="380" y="56" text-anchor="middle" font-size="12" fill="#F2EDE3">Forecasting</text>
-    <text x="380" y="72" text-anchor="middle" font-size="10.5">next 15 minutes</text>
+    <text x="380" y="72" text-anchor="middle" font-size="11">next 15 minutes</text>
 
     <rect x="564" y="34" width="196" height="50" fill="rgba(232,163,61,.10)" stroke="rgba(232,163,61,.55)" stroke-width="1"/>
     <text x="662" y="56" text-anchor="middle" font-size="12" fill="#F2EDE3">Management</text>
-    <text x="662" y="72" text-anchor="middle" font-size="10.5">dispatch and storage</text>
+    <text x="662" y="72" text-anchor="middle" font-size="11">dispatch and storage</text>
 
     <line x1="212" y1="59" x2="268" y2="59" stroke="rgba(159,179,191,.35)" stroke-width="1" stroke-dasharray="5 5"/>
     <line x1="494" y1="59" x2="550" y2="59" stroke="rgba(159,179,191,.35)" stroke-width="1" stroke-dasharray="5 5"/>
-    <text x="240" y="50" text-anchor="middle" font-size="9.5" fill="#E8A33D">gap</text>
-    <text x="522" y="50" text-anchor="middle" font-size="9.5" fill="#E8A33D">gap</text>
+    <text x="240" y="50" text-anchor="middle" font-size="11" fill="#E8A33D">gap</text>
+    <text x="522" y="50" text-anchor="middle" font-size="11" fill="#E8A33D">gap</text>
 
     <path d="M98 96 L662 96" stroke="rgba(232,163,61,.28)" stroke-width="1" stroke-dasharray="3 6"/>
     <text x="380" y="112" text-anchor="middle" font-size="10.5" fill="#E8A33D">geography — the missing common layer</text>
@@ -145,6 +171,7 @@
   <div class="foot"><span class="src">Six articles · three themes</span><span>2 / 6</span></div>
 </section>
 
+<!-- ===== 3 · Theme A ===== -->
 <section class="slide split" data-notes="Theme A is assessment. Zhang used satellite cloud climatology, GLHCC, on a one-kilometre grid, to estimate PV energy across China, and fine resolution clearly beats the older coarse products where cloud changes fast. Doljak took a completely different route: GIS with multi-criteria AHP to rank sites in Serbia, and the northern Banat region came out strongest. Punchline worth saying out loud: Zhang measures how much energy is there, Doljak decides where to build. Both turn geography into a spatial decision.">
   <div>
     <div class="kicker">03 · Theme A</div>
@@ -156,12 +183,13 @@
     </ul>
   </div>
   <div class="fig tall">
-    <img src="https://aka.doubaocdn.com/s/hQ4ZseWVpk" alt="Satellite view of cloud fields over land and coastline">
-    <div class="cap"><b>Cloud is the filter.</b> Satellite climatology turns cloud patterns into a usable solar resource map — the method behind Theme A.</div>
+    <img src="https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&amp;REQUEST=GetMap&amp;VERSION=1.1.1&amp;LAYERS=BlueMarble_ShadedRelief_Bathymetry&amp;FORMAT=image/jpeg&amp;TRANSPARENT=FALSE&amp;WIDTH=1200&amp;HEIGHT=675&amp;SRS=EPSG:4326&amp;BBOX=100,15,130,45" alt="Shaded relief of eastern China showing terrain, coastline and latitude span">
+    <div class="cap"><b>Terrain, latitude, position.</b> Relief and geography decide how much sun a site receives — and where PV can physically go. <span style="color:#E8A33D">NASA Blue Marble</span></div>
   </div>
   <div class="foot"><span class="src">Theme A · from geography to spatial decision</span><span>3 / 6</span></div>
 </section>
 
+<!-- ===== 4 · Theme B ===== -->
 <section class="slide split" data-notes="Theme B is forecasting. Sanjari and Gooi first classify operating conditions by local temperature and irradiance, then run a higher-order Markov chain that gives a probabilistic forecast fifteen minutes ahead, and the local-climate model beats the generic one. Singla's review then maps the whole toolkit: physical, statistical and machine learning, with neural networks usually winning. Punchline: one proves local conditions matter, the other shows how the machinery works.">
   <div>
     <div class="kicker">04 · Theme B</div>
@@ -204,6 +232,7 @@
   <div class="foot"><span class="src">Theme B · prediction chain</span><span>4 / 6</span></div>
 </section>
 
+<!-- ===== 5 · Theme C ===== -->
 <section class="slide split" data-notes="Theme C is management. Rao's 2025 review shows IoT sensors plus cloud computing tying solar generation into smart energy management. Syed's 2021 survey maps the big-data stack underneath the smart grid. Critique: both stay general, neither is PV-specific, and neither brings geography back in. So the management layer exists, but it floats above assessment and forecasting instead of feeding on them. That is exactly the seam RQ2 is pointing at.">
   <div>
     <div class="kicker">05 · Theme C</div>
@@ -254,6 +283,7 @@
   <div class="foot"><span class="src">Theme C · where the chain breaks</span><span>5 / 6</span></div>
 </section>
 
+<!-- ===== 6 · Evaluation + implications ===== -->
 <section class="slide split" data-notes="Close by deepening one method rather than listing everything. Zhang's satellite approach is the right one to evaluate: it answers RQ1 directly, and it shows that 1 km cloud data captures genuinely uneven urban solar resources. But it stops at assessment, the output never feeds forecasting or dispatch. That limitation is exactly the opening RQ2 occupies. Then implications in three steps: planning practice, research agenda, and one linked framework. Finish with the geography line, thank the room, and invite questions.">
   <div>
     <div class="kicker">06 · Evaluation &amp; implications</div>
@@ -266,11 +296,40 @@
     <div class="byline geo">As a geography student: GIS and remote sensing are the bridge between environmental data and urban energy planning.</div>
   </div>
   <div class="fig wide">
-    <img src="https://aka.doubaocdn.com/s/UAtlMm3XEx" alt="Ground-mounted photovoltaic array following terrain contours on a hillside">
-    <div class="cap"><b>Where the argument lands.</b> Terrain, sun angle and cloud together decide what a site is worth.</div>
+    <img src="https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&amp;REQUEST=GetMap&amp;VERSION=1.1.1&amp;LAYERS=VIIRS_CityLights_2012&amp;FORMAT=image/jpeg&amp;TRANSPARENT=FALSE&amp;WIDTH=1200&amp;HEIGHT=675&amp;SRS=EPSG:4326&amp;BBOX=112.0,21.0,115.2,23.6" alt="Night-time lights over the Pearl River Delta, Hong Kong and Shenzhen">
+    <div class="cap"><b>Home ground.</b> The Pearl River Delta — Guangzhou, Shenzhen, Hong Kong — as one continuous demand cluster. <span style="color:#E8A33D">NASA/NOAA VIIRS</span></div>
   </div>
   <div class="foot"><span class="src">Thank you — questions welcome</span><span>6 / 6</span></div>
 </section>
+
+
+<!-- ===== References & image credits (overlay, NOT a deck slide) ===== -->
+<div class="refs" id="refs" aria-hidden="true">
+  <div class="rh">
+    <h3>References &amp; image credits</h3>
+    <span>Press <b>R</b> to close — this panel sits outside the six-slide deck</span>
+  </div>
+  <div class="cols">
+    <div>
+      <h4>Six articles · APA 7</h4>
+      <ol>
+        <li>Doljak, D., &amp; Stanojević, G. (2017). Evaluation of natural conditions for site selection of ground-mounted photovoltaic power plants in Serbia. <i>Energy, 127</i>, 291–300. https://doi.org/10.1016/j.energy.2017.03.140</li>
+        <li>Rao, C. K., Sahoo, S. K., &amp; Yanine, F. F. (2025). A comprehensive review of smart energy management systems for photovoltaic power generation utilizing the internet of things. <i>Unconventional Resources, 7</i>, 100197. https://doi.org/10.1016/j.uncres.2025.100197</li>
+        <li>Sanjari, M. J., &amp; Gooi, H. B. (2017). Probabilistic forecast of PV power generation based on higher order Markov chain. <i>IEEE Transactions on Power Systems, 32</i>(4), 2942–2949. https://doi.org/10.1109/TPWRS.2016.2616902</li>
+        <li>Singla, P., Duhan, M., &amp; Saroha, S. (2022). A comprehensive review and analysis of solar forecasting techniques. <i>Frontiers in Energy, 16</i>(2), 187–223. https://doi.org/10.1007/s11708-021-0722-7</li>
+        <li>Syed, D., Zainab, A., Ghrayeb, A., Refaat, S. S., Abu-Rub, H., &amp; Bouhali, O. (2021). Smart grid big data analytics: Survey of technologies, techniques, and applications. <i>IEEE Access, 8</i>. https://doi.org/10.1109/ACCESS.2020.3041178</li>
+        <li>Zhang, S., Ma, Y., Chen, F., Shang, E., Yao, W., Liu, J., &amp; Long, A. (2022). Estimation of photovoltaic energy in China based on global land high-resolution cloud climatology. <i>Remote Sensing, 14</i>(9), 2084. https://doi.org/10.3390/rs14092084</li>
+      </ol>
+    </div>
+    <div>
+      <h4>Image credits · public domain</h4>
+      <p class="cred"><b>Slides 1 &amp; 6 — VIIRS City Lights (2012 composite).</b> NASA Earth Observatory / NASA Goddard Space Flight Center, using VIIRS data from the Suomi NPP satellite (NASA/NOAA). Public domain. Rendered via NASA Global Imagery Browse Services (GIBS), layer <i>VIIRS_CityLights_2012</i>.</p>
+      <p class="cred"><b>Slide 3 — Blue Marble: Shaded Relief and Bathymetry.</b> NASA Earth Observatory / NASA Goddard Space Flight Center. Public domain. Rendered via NASA GIBS, layer <i>BlueMarble_ShadedRelief_Bathymetry</i>.</p>
+      <p class="cred"><b>Framing note.</b> All three images are observational NASA products, not illustrations. Night-time radiance is used here as a proxy for urban energy demand, not as a measured electricity figure.</p>
+      <p class="note">Diagrams on slides 2, 4 and 5 (the three-stage gap, the 15-minute forecast curve and the IoT stack) are schematic — drawn by the author to show structure, not measured data.</p>
+    </div>
+  </div>
+</div>
 
 <div class="notes" id="notes"></div>
 
@@ -296,8 +355,20 @@
       else if(k==='End'){show(slides.length-1);}
       else if(k.toLowerCase()==='n'){document.body.classList.toggle('notes-on');}
     });
+
+    document.addEventListener('keydown',function(e){
+      var k=e.key.toLowerCase();
+      if(k==='r'){e.preventDefault();
+        var on=document.body.classList.toggle('refs-on');
+        var box=document.getElementById('refs');
+        if(box) box.setAttribute('aria-hidden', on?'false':'true');
+      }
+      else if(k==='escape'&&document.body.classList.contains('refs-on')){
+        document.body.classList.remove('refs-on');}
+    });
     window.addEventListener('click',function(e){
       if(e.target.closest('.notes'))return;
+      if(document.body.classList.contains('refs-on'))return;
       show(i+1);
     });
     var start=parseInt((location.hash||'#1').slice(1),10);
