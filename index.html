@@ -120,7 +120,7 @@
 <div class="progress" id="prog"></div>
 
 <!-- ===== 1 · Title ===== -->
-<section class="slide split" data-notes="Same panels. Same budget. Two cities — different power. The difference is geography. Smart cities run on sensors, devices and servers, and all of that eats electricity. Solar is the green answer, but it is not stable: latitude, cloud, weather and climate decide the yield. So a city that wants to manage solar has to read its own geography first. That is my starting point.">
+<section class="slide split" data-notes="Same panels. Same budget. But two cities don't get the same power. Why? Geography. A smart city runs on sensors and servers, and all of it needs electricity. Solar is clean, but it is not steady. Move north or south and the sun changes. Clouds change. Weather changes. So a city has to read its own geography first. That's where I start.">
   <div>
     <div class="kicker">UE2 Academic Presentation · Group 2 · Smart Cities</div>
     <h1>Geographic Dimensions of Photovoltaic Energy Management in Smart Cities</h1>
@@ -142,7 +142,7 @@
 </section>
 
 <!-- ===== 2 · RQ + gap (single RQ) ===== -->
-<section class="slide single" data-notes="Here is the gap. Assessment, forecasting and management are studied as three separate conversations, and almost nobody puts geography in the middle. That matters, because a city cannot act on a number it never connected to a place. So: how do geographic factors — radiation, cloud and climate — shape assessment and management in smart cities? That one question carries the forecasting in between.">
+<section class="slide single" data-notes="So here's the problem. Researchers study three things: how much sun a place gets, how much power arrives next hour, and how the city uses it. Three topics, three separate groups of papers. Almost nobody puts geography in the middle. That matters: a city can't act on a number that never touched a place. So: how do geographic factors, sun and cloud and climate, shape how we measure solar and how a smart city manages it? One question, and geography runs through all three.">
   <div class="kicker">02 · Research question</div>
   <h2>Three parts, three separate literatures — geography missing from the centre</h2>
   <div class="q"><b>RQ1.</b> How do geographic factors — solar radiation, cloud cover and climate — shape solar resource assessment and the energy management of photovoltaic systems in smart cities?</div>
@@ -173,7 +173,7 @@
 </section>
 
 <!-- ===== 3 · Theme A ===== -->
-<section class="slide split" data-notes="Assessment first. Zhang used one-kilometre satellite cloud data to say how much PV energy a place actually gets — and fine resolution beats the old coarse maps. Doljak used GIS plus a ranking method to say where to build. One answers how much, the other answers where — the same geographic layer.">
+<section class="slide split" data-notes="First, measuring. Zhang used one-kilometre satellite cloud data to work out how much solar power a place really gets. Fine detail beats the old blurry maps. Doljak did something different: he used GIS to score sites, to decide where to build. One asks how much, the other asks where. Same geographic layer.">
   <div>
     <div class="kicker">03 · Theme A</div>
     <h2>Assessment — how much energy, and where to build</h2>
@@ -191,7 +191,7 @@
 </section>
 
 <!-- ===== 4 · Theme B ===== -->
-<section class="slide split" data-notes="Forecasting next. Sanjari sorted operating states by local temperature and irradiance, then ran a Markov chain — a model that predicts the next state from recent ones — and got a fifteen-minute probabilistic forecast. Local beat generic. Singla's review maps the whole toolkit: physical, statistical, machine learning.">
+<section class="slide split" data-notes="Second, forecasting. Sanjari looked at local temperature and sunlight, then used a model called a Markov chain. Put simply, it guesses the next moment from the last few. He got a fifteen-minute forecast, and local data beat a generic model. Singla's review maps the toolbox: physics, statistics, machine learning.">
   <div>
     <div class="kicker">04 · Theme B</div>
     <h2>Forecasting — local climate beats a global model</h2>
@@ -234,7 +234,7 @@
 </section>
 
 <!-- ===== 5 · Theme C ===== -->
-<section class="slide split" data-notes="Management is the weak link. Rao reviews IoT and cloud platforms for PV management. Syed surveys the big-data stack underneath the smart grid. Both are broad, neither is PV-specific, and neither brings geography in. The layer exists — it just floats.">
+<section class="slide split" data-notes="Third, management, the weak part. Rao reviews IoT and cloud platforms for solar management: sensors talking to the cloud. Syed surveys the big data stack under the smart grid. Both are broad. Neither is really about solar, and neither brings geography in. The layer exists. It just floats.">
   <div>
     <div class="kicker">05 · Theme C</div>
     <h2>Management — the vision, and the missing link</h2>
@@ -285,7 +285,7 @@
 </section>
 
 <!-- ===== 6 · Evaluation + implications ===== -->
-<section class="slide split" data-notes="Now my evaluation. The model I want to weigh is Zhang's cloud climatology — GLHCC, a one-kilometre cloud map used to estimate PV energy. It claims fine resolution exposes real unevenness in urban solar resources. That holds: Sanjari and Singla both confirm local conditions decide accuracy, so the model is right about geography. But it strains — it stops at assessment. The output never feeds forecasting, never reaches dispatch. So the lesson is not that the model is wrong, it is that the model is unfinished. A city can rank its districts by sunlight and still be blind at two in the afternoon, when cloud arrives. And three implications. First, planning: site on evidence, not habit. Second, research: keep geography central at every stage — a method that ignores it is only locally right by accident. Third, practice: link assessment, forecasting and dispatch into one chain, so a forecast changes what the grid does tonight. Same panels, same budget — the city that reads its geography gets more power. Thank you.">
+<section class="slide split" data-notes="Now my judgement. The model I'll weigh is Zhang's cloud map, GLHCC: a one-kilometre cloud map used to estimate solar energy. Its claim: fine detail shows real unevenness inside a city. That holds, because Sanjari and Singla both show local conditions decide accuracy. But it strains: he stops at measuring. The result never goes into forecasting, never reaches the grid. So the model isn't wrong. It's unfinished. A city can rank its districts by sunlight and still be blind at two in the afternoon, when cloud rolls in. Three implications. Planning: choose sites on evidence, not habit. Research: keep geography at every step, or the method is only right by luck. Practice: join measuring, forecasting and dispatch into one chain, so tomorrow's forecast changes what the grid does tonight. Same panels. Same budget. The city that reads its geography gets more power. Thank you.">
   <div>
     <div class="kicker">06 · Evaluation &amp; close</div>
     <h2>One model, weighed — and what it still misses</h2>
