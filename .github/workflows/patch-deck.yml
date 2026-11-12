@@ -1,0 +1,78 @@
+name: Patch deck numbering and forecast chart
+on:
+  push:
+    paths:
+      - .github/workflows/patch-deck.yml
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply patch
+        run: |
+          python3 - <<'PY'
+          import re
+          p = 'index.html'
+          s = open(p, encoding='utf-8').read()
+
+          FT = [
+              ('P1 · 0:00–0:36', '01 · 0:00–0:36'),
+              ('P2 · 0:36–1:12', '02 · 0:36–1:12'),
+              ('P3 · 1:12–1:36', '03 · 1:12–1:36'),
+              ('P3 · 1:36–2:00', '04 · 1:36–2:00'),
+              ('P3 · 2:00–2:24', '05 · 2:00–2:24'),
+              ('P4 · 2:24–3:24 · P5 · 3:24–4:00', '06 · 2:24–4:00'),
+          ]
+          done = 0
+          for a, b in FT:
+              if a in s:
+                  s = s.replace(a, b)
+                  done += 1
+          print('footers patched:', done)
+
+          NEW = '''<svg class='chart' viewBox='0 0 380 268' role='img' aria-label='Illustrative 15-minute PV power forecast with uncertainty band'>
+                <rect x='8' y='9' width='10' height='10' fill='#E8A33D'/>
+                <text x='24' y='18' font-size='11'>mean forecast</text>
+                <rect x='120' y='9' width='10' height='10' fill='rgba(232,163,61,.13)' stroke='rgba(232,163,61,.6)' stroke-width='1'/>
+                <text x='136' y='18' font-size='11'>uncertainty band</text>
+                <text x='372' y='18' text-anchor='end' font-size='10' fill='#9FB3BF'>illustrative</text>
+                <line class='grid' x1='44' y1='212' x2='356' y2='212'/>
+                <line class='grid' x1='44' y1='155' x2='356' y2='155'/>
+                <line class='grid' x1='44' y1='98' x2='356' y2='98'/>
+                <line class='grid' x1='44' y1='41' x2='356' y2='41'/>
+                <line class='axis' x1='44' y1='212' x2='356' y2='212'/>
+                <line class='axis' x1='44' y1='41' x2='44' y2='212'/>
+                <text x='38' y='215' text-anchor='end' class='lbl'>0</text>
+                <text x='38' y='158' text-anchor='end' class='lbl'>50</text>
+                <text x='38' y='93' text-anchor='end' class='lbl'>100%</text>
+                <polygon points='44,150 72,132 100,116 128,104 156,99 184,90 212,80 240,73 268,63 296,52 324,42 356,33 356,63 324,73 296,84 268,96 240,107 212,113 184,123 156,131 128,135 100,144 72,158 44,172' fill='rgba(232,163,61,.07)' stroke='none'/>
+                <polyline points='44,150 72,132 100,116 128,104 156,99 184,90 212,80 240,73 268,63 296,52 324,42 356,33' fill='none' stroke='rgba(232,163,61,.45)' stroke-width='1' stroke-dasharray='4 3'/>
+                <polyline points='44,172 72,158 100,144 128,135 156,131 184,123 212,113 240,107 268,96 296,84 324,73 356,63' fill='none' stroke='rgba(232,163,61,.45)' stroke-width='1' stroke-dasharray='4 3'/>
+                <polyline points='44,161 72,145 100,130 128,120 156,115 184,107 212,97 240,90 268,80 296,68 324,58 356,48' fill='none' stroke='#E8A33D' stroke-width='2.4' stroke-linejoin='round' stroke-linecap='round'/>
+                <text x='44' y='230' text-anchor='middle' class='lbl'>now</text>
+                <text x='356' y='230' text-anchor='end' class='lbl'>+15 min</text>
+                <text x='200' y='230' text-anchor='middle' class='lbl' fill='#9FB3BF'>forecast horizon</text>
+                <text x='8' y='254' class='lbl' fill='#9FB3BF'>input: local temperature + irradiance</text>
+              </svg>'''
+
+          pat = re.compile(r'<svg class="chart" viewBox="0 0 380 250" role="img" aria-label="Illustrative 15-minute PV power forecast with uncertainty band">.*?</svg>', re.S)
+          s, n = pat.subn(lambda m: NEW, s)
+          print('chart replaced:', n)
+
+          s = s.replace("else if(k.toLowerCase()==='n'){document.body.classList.toggle('notes-on');}",
+                        "else if(k.toLowerCase()==='n'&&!e.ctrlKey&&!e.metaKey&&!e.altKey){document.body.classList.toggle('notes-on');}")
+          s = s.replace("      var k=e.key.toLowerCase();\n      if(k==='r'){e.preventDefault();",
+                        "      var k=e.key.toLowerCase();\n      if(e.ctrlKey||e.metaKey||e.altKey)return;\n      if(k==='r'){e.preventDefault();")
+
+          open(p, 'w', encoding='utf-8').write(s)
+          print('written', len(s))
+          PY
+      - name: Commit
+        run: |
+          git config user.name 'deck-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Fix slide numbering and forecast chart' || echo 'nothing to commit'
+          git push
