@@ -138,7 +138,7 @@
     <div class="veil"></div>
     <div class="cap"><b>Where the demand sits.</b> Night-time lights over eastern China: urban energy demand is concentrated, and unevenly so. <span style="color:#E8A33D">NASA/NOAA VIIRS</span></div>
   </div>
-  <div class="foot"><span class="src">P1 · 0:00–0:36</span><span>1 / 6</span></div>
+  <div class="foot"><span class="src">01 · 0:00–0:36</span><span>1 / 6</span></div>
 </section>
 
 <!-- ===== 2 · RQ + gap (single RQ) ===== -->
@@ -169,7 +169,7 @@
     <path d="M98 96 L662 96" stroke="rgba(232,163,61,.28)" stroke-width="1" stroke-dasharray="3 6"/>
     <text x="380" y="112" text-anchor="middle" font-size="10.5" fill="#E8A33D">geography — the missing common layer</text>
   </svg>
-  <div class="foot"><span class="src">P2 · 0:36–1:12</span><span>2 / 6</span></div>
+  <div class="foot"><span class="src">02 · 0:36–1:12</span><span>2 / 6</span></div>
 </section>
 
 <!-- ===== 3 · Theme A ===== -->
@@ -187,7 +187,7 @@
     <img src="assets/nasa-topo.jpg" onerror="this.onerror=null;this.src='https://aka.doubaocdn.com/s/gAUpHUuaKK'" alt="Shaded relief of eastern China showing terrain, coastline and latitude span">
     <div class="cap"><b>Terrain, latitude, position.</b> Relief and geography decide how much sun a site receives — and where PV can physically go. <span style="color:#E8A33D">NASA Blue Marble</span></div>
   </div>
-  <div class="foot"><span class="src">P3 · 1:12–1:36</span><span>3 / 6</span></div>
+  <div class="foot"><span class="src">03 · 1:12–1:36</span><span>3 / 6</span></div>
 </section>
 
 <!-- ===== 4 · Theme B ===== -->
@@ -202,35 +202,32 @@
     </ul>
   </div>
   <div>
-    <svg class="chart" viewBox="0 0 380 250" role="img" aria-label="Illustrative 15-minute PV power forecast with uncertainty band">
-      <text x="8" y="14" font-size="10.5" fill="#E8A33D">PV power</text>
-      <text x="372" y="14" text-anchor="end" font-size="10" fill="#9FB3BF">illustrative</text>
-
-      <line class="axis" x1="34" y1="196" x2="360" y2="196"/>
-      <line class="axis" x1="34" y1="30" x2="34" y2="196"/>
-      <line class="grid" x1="34" y1="150" x2="360" y2="150"/>
-      <line class="grid" x1="34" y1="104" x2="360" y2="104"/>
-      <line class="grid" x1="34" y1="58" x2="360" y2="58"/>
-
-      <path d="M34 168 C80 120 120 96 156 84 C200 70 232 78 266 62 C300 48 330 40 360 36 L360 30 C320 26 288 34 258 48 C222 66 190 78 156 96 C118 116 76 150 34 186 Z" fill="rgba(232,163,61,.16)"/>
-      <path d="M34 177 C80 133 120 108 156 96 C200 82 232 90 266 74 C300 60 330 52 360 48" fill="none" stroke="rgba(232,163,61,.35)" stroke-width="7"/>
-      <path d="M34 177 C80 133 120 108 156 96 C200 82 232 90 266 74 C300 60 330 52 360 48" fill="none" stroke="#E8A33D" stroke-width="2.2"/>
-
-      <line x1="34" y1="196" x2="34" y2="203" stroke="rgba(159,179,191,.4)"/>
-      <line x1="360" y1="196" x2="360" y2="203" stroke="rgba(159,179,191,.4)"/>
-      <text x="34" y="219" text-anchor="middle" class="lbl">now</text>
-      <text x="360" y="219" text-anchor="end" class="lbl">+15 min</text>
-      <text x="197" y="219" text-anchor="middle" class="lbl">forecast horizon</text>
-
-      <rect x="42" y="36" width="9" height="9" fill="#E8A33D"/>
-      <text x="57" y="45" class="lbl" fill="#F2EDE3">mean forecast</text>
-      <rect x="42" y="56" width="9" height="9" fill="rgba(232,163,61,.35)"/>
-      <text x="57" y="65" class="lbl">uncertainty band</text>
-
-      <text x="34" y="236" class="lbl" fill="#9FB3BF">input: local temperature + irradiance</text>
+    <svg class='chart' viewBox='0 0 380 268' role='img' aria-label='Illustrative 15-minute PV power forecast with uncertainty band'>
+      <rect x='8' y='9' width='10' height='10' fill='#E8A33D'/>
+      <text x='24' y='18' font-size='11'>mean forecast</text>
+      <rect x='120' y='9' width='10' height='10' fill='rgba(232,163,61,.13)' stroke='rgba(232,163,61,.6)' stroke-width='1'/>
+      <text x='136' y='18' font-size='11'>uncertainty band</text>
+      <text x='372' y='18' text-anchor='end' font-size='10' fill='#9FB3BF'>illustrative</text>
+      <line class='grid' x1='44' y1='212' x2='356' y2='212'/>
+      <line class='grid' x1='44' y1='155' x2='356' y2='155'/>
+      <line class='grid' x1='44' y1='98' x2='356' y2='98'/>
+      <line class='grid' x1='44' y1='41' x2='356' y2='41'/>
+      <line class='axis' x1='44' y1='212' x2='356' y2='212'/>
+      <line class='axis' x1='44' y1='41' x2='44' y2='212'/>
+      <text x='38' y='215' text-anchor='end' class='lbl'>0</text>
+      <text x='38' y='158' text-anchor='end' class='lbl'>50</text>
+      <text x='38' y='93' text-anchor='end' class='lbl'>100%</text>
+      <polygon points='44,150 72,132 100,116 128,104 156,99 184,90 212,80 240,73 268,63 296,52 324,42 356,33 356,63 324,73 296,84 268,96 240,107 212,113 184,123 156,131 128,135 100,144 72,158 44,172' fill='rgba(232,163,61,.07)' stroke='none'/>
+      <polyline points='44,150 72,132 100,116 128,104 156,99 184,90 212,80 240,73 268,63 296,52 324,42 356,33' fill='none' stroke='rgba(232,163,61,.45)' stroke-width='1' stroke-dasharray='4 3'/>
+      <polyline points='44,172 72,158 100,144 128,135 156,131 184,123 212,113 240,107 268,96 296,84 324,73 356,63' fill='none' stroke='rgba(232,163,61,.45)' stroke-width='1' stroke-dasharray='4 3'/>
+      <polyline points='44,161 72,145 100,130 128,120 156,115 184,107 212,97 240,90 268,80 296,68 324,58 356,48' fill='none' stroke='#E8A33D' stroke-width='2.4' stroke-linejoin='round' stroke-linecap='round'/>
+      <text x='44' y='230' text-anchor='middle' class='lbl'>now</text>
+      <text x='356' y='230' text-anchor='end' class='lbl'>+15 min</text>
+      <text x='200' y='230' text-anchor='middle' class='lbl' fill='#9FB3BF'>forecast horizon</text>
+      <text x='8' y='254' class='lbl' fill='#9FB3BF'>input: local temperature + irradiance</text>
     </svg>
   </div>
-  <div class="foot"><span class="src">P3 · 1:36–2:00</span><span>4 / 6</span></div>
+  <div class="foot"><span class="src">04 · 1:36–2:00</span><span>4 / 6</span></div>
 </section>
 
 <!-- ===== 5 · Theme C ===== -->
@@ -281,7 +278,7 @@
       <text x="8" y="224" class="lbl" fill="#F2EDE3">The management platform does not — yet.</text>
     </svg>
   </div>
-  <div class="foot"><span class="src">P3 · 2:00–2:24</span><span>5 / 6</span></div>
+  <div class="foot"><span class="src">05 · 2:00–2:24</span><span>5 / 6</span></div>
 </section>
 
 <!-- ===== 6 · Evaluation + implications ===== -->
@@ -301,7 +298,7 @@
     <img src="assets/nasa-prd.jpg" onerror="this.onerror=null;this.src='https://aka.doubaocdn.com/s/XRM0l6NdRX'" alt="Night-time lights over the Pearl River Delta, Hong Kong and Shenzhen">
     <div class="cap"><b>Home ground.</b> The Pearl River Delta — Guangzhou, Shenzhen, Hong Kong — as one continuous demand cluster. <span style="color:#E8A33D">NASA/NOAA VIIRS</span></div>
   </div>
-  <div class="foot"><span class="src">P4 · 2:24–3:24 · P5 · 3:24–4:00</span><span>6 / 6</span></div>
+  <div class="foot"><span class="src">06 · 2:24–4:00</span><span>6 / 6</span></div>
 </section>
 
 
@@ -355,11 +352,12 @@
       else if(k==='ArrowLeft'||k==='PageUp'){e.preventDefault();show(i-1);}
       else if(k==='Home'){show(0);}
       else if(k==='End'){show(slides.length-1);}
-      else if(k.toLowerCase()==='n'){document.body.classList.toggle('notes-on');}
+      else if(k.toLowerCase()==='n'&&!e.ctrlKey&&!e.metaKey&&!e.altKey){document.body.classList.toggle('notes-on');}
     });
 
     document.addEventListener('keydown',function(e){
       var k=e.key.toLowerCase();
+      if(e.ctrlKey||e.metaKey||e.altKey)return;
       if(k==='r'){e.preventDefault();
         var on=document.body.classList.toggle('refs-on');
         var box=document.getElementById('refs');
