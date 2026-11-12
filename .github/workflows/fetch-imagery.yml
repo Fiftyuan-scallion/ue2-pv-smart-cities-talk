@@ -1,0 +1,64 @@
+name: Fetch NASA imagery
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/fetch-imagery.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fetch-imagery
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download NASA layers
+        run: |
+          set -u
+          mkdir -p assets
+          BASE="https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&REQUEST=GetMap&VERSION=1.1.1&FORMAT=image/jpeg&TRANSPARENT=FALSE&WIDTH=1200&HEIGHT=675&SRS=EPSG:4326"
+
+          fetch () {
+            out="$1"; layer="$2"; bbox="$3"
+            i=1
+            while [ "$i" -le 6 ]; do
+              if curl -sSfL --retry 2 --retry-delay 3 -m 90 -o "$out" "$BASE&LAYERS=$layer&BBOX=$bbox"; then
+                if [ -s "$out" ] && file "$out" | grep -q "JPEG"; then
+                  echo "ok $out $(wc -c < "$out") bytes"
+                  return 0
+                fi
+              fi
+              echo "retry $i for $out"
+              rm -f "$out"
+              sleep 6
+              i=$((i+1))
+            done
+            echo "FAILED $out"
+            return 1
+          }
+
+          fetch assets/nasa-city.jpg VIIRS_CityLights_2012 "103,18,127,42"
+          fetch assets/nasa-topo.jpg BlueMarble_ShadedRelief_Bathymetry "95,10,140,45"
+          fetch assets/nasa-prd.jpg VIIRS_CityLights_2012 "111.5,21.5,115.5,24.0"
+
+          echo "--- result ---"
+          ls -l assets
+
+      - name: Commit images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets
+          if git diff --cached --quiet; then
+            echo "nothing to commit"
+          else
+            git commit -m "Add NASA imagery for slides [skip ci]"
+            git push
+          fi
