@@ -1,0 +1,39 @@
+name: Patch RQ to include forecasting
+on:
+  push:
+    paths:
+      - .github/workflows/patch-rq.yml
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply patch
+        run: |
+          python3 - <<'PY'
+          p = 'index.html'
+          s = open(p, encoding='utf-8').read()
+
+          RQ_OLD = 'How do geographic factors — solar radiation, cloud cover and climate — shape solar resource assessment and the energy management of photovoltaic systems in smart cities?'
+          RQ_NEW = 'How do geographic factors — solar radiation, cloud cover and climate — shape solar resource assessment, short-term photovoltaic forecasting, and the energy management of photovoltaic systems in smart cities?'
+          P2_OLD = 'So: how do geographic factors, sun and cloud and climate, shape how we measure solar and how a smart city manages it?'
+          P2_NEW = 'So: how do geographic factors — sun, cloud and climate — shape how we measure solar, how we forecast it, and how a smart city manages it?'
+
+          print('rq hits:', s.count(RQ_OLD))
+          print('p2 hits:', s.count(P2_OLD))
+          s = s.replace(RQ_OLD, RQ_NEW)
+          s = s.replace(P2_OLD, P2_NEW)
+          s = s.replace('02 · Research questions', '02 · Research question')
+
+          open(p, 'w', encoding='utf-8').write(s)
+          print('written', len(s))
+          PY
+      - name: Commit
+        run: |
+          git config user.name 'deck-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Add short-term forecasting to the research question' || echo 'nothing to commit'
+          git push
