@@ -1,0 +1,31 @@
+name: Drop photovoltaic from RQ
+on:
+  push:
+    paths:
+      - .github/workflows/patch-rq2.yml
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply patch
+        run: |
+          python3 - <<'PY'
+          p = 'index.html'
+          s = open(p, encoding='utf-8').read()
+          OLD = 'How do geographic factors — solar radiation, cloud cover and climate — shape solar resource assessment, short-term photovoltaic forecasting, and the energy management of photovoltaic systems in smart cities?'
+          NEW = 'How do geographic factors — solar radiation, cloud cover and climate — shape solar resource assessment, short-term forecasting, and the energy management of solar power systems in smart cities?'
+          print('hits:', s.count(OLD))
+          s = s.replace(OLD, NEW)
+          open(p, 'w', encoding='utf-8').write(s)
+          print('written', len(s))
+          PY
+      - name: Commit
+        run: |
+          git config user.name 'deck-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add index.html
+          git commit -m 'Drop photovoltaic from the research question' || echo 'nothing to commit'
+          git push
